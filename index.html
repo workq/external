@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="turnjs4/lib/turn.min.js"></script>
+
+</head>
+
+<body>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
+
+        body {
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            background-color: rgb(32, 32, 32);
+            margin: 0;
+            padding: 0;
+        }
+
+        #flipbook {
+            border-radius: 20px;
+        }
+
+        #flipbook .page {
+            background-color: rgb(247, 247, 247);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px #666;
+        }
+
+        #flipbook .even {
+            background: -webkit-gradient(linear, left top, right top, color-stop(0.95, #fff), color-stop(1, #dadada));
+            background-image: -webkit-linear-gradient(left, #fff 90%, #dadada 100%);
+            background-image: -moz-linear-gradient(left, #fff 90%, #dadada 100%);
+            background-image: -ms-linear-gradient(left, #fff 90%, #dadada 100%);
+            background-image: -o-linear-gradient(left, #fff 90%, #dadada 100%);
+            background-image: linear-gradient(left, #fff 90%, #dadada 100%);
+            -webkit-box-shadow: inset 0 0 2px #666;
+            -moz-box-shadow: inset 0 0 2px #666;
+            -o-box-shadow: inset 0 0 2px #666;
+            -ms-box-shadow: inset 0 0 2px #666;
+            box-shadow: inset 0 0 2px #666;
+        }
+
+        #flipbook .odd {
+            background: -webkit-gradient(linear, right top, left top, color-stop(0.95, #FFF), color-stop(1, #DADADA));
+            background-image: -webkit-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+            background-image: -moz-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+            background-image: -ms-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+            background-image: -o-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+            background-image: linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+            -webkit-box-shadow: inset 0 0 5px #666;
+            -moz-box-shadow: inset 0 0 5px #666;
+            -o-box-shadow: inset 0 0 5px #666;
+            -ms-box-shadow: inset 0 0 5px #666;
+            box-shadow: inset 0 0 5px #666;
+
+        }
+
+        #flipbook .shadow,
+        #flipbook.shadow {
+            -webkit-box-shadow: 0 4px 10px #666;
+            -moz-box-shadow: 0 4px 10px #666;
+            -ms-box-shadow: 0 4px 10px #666;
+            -o-box-shadow: 0 4px 10px #666;
+            box-shadow: 0 4px 10px #666;
+        }
+
+        #flipbook .cover {
+            background-image: url('/public/57547.jpg');
+            background-size: 200%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #card__container .helper {
+            padding: 10px;
+            color: white;
+            position: absolute;
+            bottom: 15%;
+            right: 50%;
+            font-size: 1em;
+            transform: translate(50%, 15%);
+            background-color: rgb(173, 11, 32);
+            border-radius: 5em;
+            z-index: 100;
+            font-weight: bolder;
+            box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
+        }
+
+        #flipbook .pages {
+            font-size: 4em;
+        }
+
+        .preloader {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            backdrop-filter: blur(6px);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(241, 241, 241);
+            border-radius: 50%;
+            box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
+        }
+
+        .loader img{
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (max-width: 700px) {
+            #flipbook img {
+                display: block;
+                margin: auto;
+                width: 100%;
+                object-fit: scale-down;
+            }
+        }
+    </style>
+    <div class="preloader">
+        <div class="loader">
+            <img loading="lazy" src="/public/preloader.svg" alt="loader" srcset="">
+        </div>
+    </div>
+    <div id="card__container">
+        <div id="flipbook">
+            <div class="cover">
+                <span class="helper">Tap the edges!</span>
+            </div>
+            <div class="pages"> Page 1 </div>
+            <div class="pages"> Page 2 </div>
+            <div></div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            
+            document.querySelector('.preloader').style.display = 'none';
+        };
+    </script>
+    <script src="js/flip.js"></script>
+</body>
+
+</html>
