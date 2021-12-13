@@ -4,7 +4,8 @@ function checkMobile() {
 
    if (!checkMobile()) { // not mobile
     $('#flipbook').turn({
-        display:'double',
+        display:'single',
+        width:'60%',
         height:'100vh',
         autoCenter: true,
         duration: 2000,
@@ -13,7 +14,8 @@ function checkMobile() {
    else {
     $('#flipbook').turn({
         display:'single',
-        height:'85vh',
+        width:'100%',
+        height:'100vh',
         autoCenter:true,
         duration:2000,
     });

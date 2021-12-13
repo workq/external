@@ -16,7 +16,7 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
-
+        @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
         body {
             overflow: hidden;
             font-family: 'Roboto', sans-serif;
@@ -25,9 +25,6 @@
             padding: 0;
         }
 
-        #flipbook {
-            border-radius: 20px;
-        }
 
         #flipbook .page {
             background-color: rgb(247, 247, 247);
@@ -76,13 +73,29 @@
         }
 
         #flipbook .cover {
-            background-image: url('/public/57547.jpg');
-            background-size: 200%;
+            background-image: url('/public/bg3.jpg');
+            background-size: 150%;
             background-repeat: no-repeat;
             background-position: center;
         }
 
-        #card__container .helper {
+        @media only screen and (max-width: 600px) {
+            #flipbook .cover {
+                background-image: url('/public/bg4.png');
+                background-size: 136%;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+
+        #card__container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+/*         #card__container .helper {
             padding: 10px;
             color: white;
             position: absolute;
@@ -91,16 +104,44 @@
             font-size: 1em;
             transform: translate(50%, 15%);
             background-color: rgb(173, 11, 32);
-            border-radius: 5em;
+
             z-index: 100;
             font-weight: bolder;
             box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
             -webkit-box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
             -moz-box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
-        }
+        } */
 
         #flipbook .pages {
             font-size: 4em;
+        }
+
+        .helper__container{
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .helper{
+            text-align: center;
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 2em;
+            font-weight: bolder;
+            position: absolute;
+            width: 70%;
+            height: 40vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);   
+            backdrop-filter: blur(6px);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            -webkit-box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
+            color: white;
         }
 
         .preloader {
@@ -124,18 +165,28 @@
             -moz-box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
         }
 
-        .loader img{
-            width: 50px;
-            height: 50px;
+        .close {
+            cursor: pointer;
+            position: absolute;
+            z-index: 250;
+            top: 25%;
+            right: 8%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            padding: 2px;
+            background-color: white;
+            color: black;
+            font-size: 1.2em;
+            font-weight: light;
         }
 
-        @media (max-width: 700px) {
-            #flipbook img {
-                display: block;
-                margin: auto;
-                width: 100%;
-                object-fit: scale-down;
-            }
+        .loader img {
+            width: 50px;
+            height: 50px;
         }
     </style>
     <div class="preloader">
@@ -146,17 +197,18 @@
     <div id="card__container">
         <div id="flipbook">
             <div class="cover">
-                <span class="helper">Tap the edges!</span>
+                <div class="helper__container">
+                    <span onclick="close()" class="close">x</span>
+                    <div class="helper">
+                        <span>Tap the edges!</span><br>
+                    </div>
+                </div>
             </div>
             <div class="pages"> Page 1 </div>
-            <div class="pages"> Page 2 </div>
-            <div></div>
         </div>
     </div>
-
     <script>
         window.onload = function () {
-            
             document.querySelector('.preloader').style.display = 'none';
         };
     </script>
