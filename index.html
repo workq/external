@@ -287,8 +287,7 @@
 
 
         .js-close {
-            font-size: 1.25em;
-            font-weight: bold;
+            font-size: 1em;
             background-color: #630094;
             border: none;
             padding: .5em 1em;
@@ -380,7 +379,7 @@
             .container__message .tree {
                 position: absolute;
                 width: 90px;
-                bottom: 9%;
+                bottom: 5%;
                 right: 3%;
                 animation: shake 1s;
 
@@ -401,8 +400,13 @@
             }
 
             .modal {
-                width: 90%;
-            }
+                width: 85%;
+            background-color: #fff;
+            padding: 2em 1em;
+            text-align: center;
+            border-radius: .5em;
+            display: block;
+        }
 
             #videoPlayer {
                 width: 100%;
@@ -420,6 +424,7 @@
             <div class="modal-image">
             </div>
             <h1>Instructions!</h1>
+            <p>Tap or drag the edges of the card to flip the card.</p>
             <video id="videoPlayer" class="video-js vjs-big-play-centered" controls autoplay preload="auto" width="640"
                 height="264" poster="public/bg3.jpg" data-setup="{}">
                 <source src="public/helper.mp4" type="video/mp4" />
@@ -429,7 +434,7 @@
                     <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                 </p>
             </video>
-            <button onclick="myfunction();" class="js-close">Close</button>
+            <button onclick="myfunction();" class="js-close">CLOSE</button>
         </div>
     </div>
     <div id="card__container">
@@ -444,10 +449,10 @@
                     <img class="tree" src="public/tree.png" alt="">
                     <img class="sock" src="public/sock.png" alt="">
                     <p class="message">
-                        Whatever you plan to do, and wherever you plan to be, we wish each one of you a happy and safe festive season.</br></br><span class="christmas">Merry
+                        In warm appreciation of your support during the past year, the people at Harrow Council extend our very best wishes to you and your loved ones.</br></br><span class="christmas">Merry
                             Christmas!</span></br>
                     </p>
-                    <span class="signature">Shaun Riley, Assistant Director of Health and Wellbeing</span>
+                    <span class="signature">Andrea De-Alwis, Business Manager, Social Services</span>
                 </div>
             </div>
         </div>
