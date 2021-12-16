@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
+    <title>Christmas card</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="turnjs4/lib/turn.min.js"></script>
@@ -17,10 +18,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
+
         body {
             overflow: hidden;
             font-family: 'Roboto', sans-serif;
-            background-color: rgb(32, 32, 32);
+            background-color: rgb(0, 0, 0);
             margin: 0;
             padding: 0;
         }
@@ -95,7 +97,7 @@
             align-items: center;
         }
 
-/*         #card__container .helper {
+        /*         #card__container .helper {
             padding: 10px;
             color: white;
             position: absolute;
@@ -116,13 +118,27 @@
             font-size: 4em;
         }
 
-        .helper__container{
+        .helper__container {
+            position: absolute;
+            z-index: 300;
             width: 100%;
             height: 100vh;
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: #4e0f78;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .helper{
+        .helper__container img{
+            width: 200px;
+            position: absolute;
+            z-index: 2;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .helper {
             text-align: center;
             font-family: 'Mountains of Christmas', cursive;
             font-size: 2em;
@@ -132,7 +148,7 @@
             height: 40vh;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);   
+            transform: translate(-50%, -50%);
             backdrop-filter: blur(6px);
             z-index: 200;
             display: flex;
@@ -165,28 +181,66 @@
             -moz-box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
         }
 
-        .close {
-            cursor: pointer;
+
+        .modal {
             position: absolute;
-            z-index: 250;
-            top: 25%;
-            right: 8%;
-            width: 20px;
-            height: 20px;
+            z-index: 100;
+            background-color: #fff;
+            padding: 2em 3em;
+            text-align: center;
+            border-radius: .5em;
+            display: block;
+        }
+
+        .active {
+            display: block;
+        }
+
+
+        .js-close {
+            font-size: 1.25em;
+            font-weight: bold;
+            background-color: #630094;
+            border: none;
+            padding: .5em 1em;
+            color: #fff;
+            border-radius: .25em;
+            cursor: pointer;
+            transition: background .4s ease, color .4s ease;
+            margin-top: 20px;
+
+        }
+
+        .js-close:hover {
+            background-color: #8346a1;
+            color: white;
+        }
+
+        .video-js .vjs-control-bar {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            padding: 2px;
-            background-color: white;
-            color: black;
-            font-size: 1.2em;
-            font-weight: light;
+        }
+
+        .btn-open {
+            display: block;
+        }
+
+        .is-active {
+            display: block;
         }
 
         .loader img {
             width: 50px;
             height: 50px;
+        }
+
+        .logoH{
+            position: absolute;
+            width: 140px;
+            top: 0px;
+            left: 3%;
         }
     </style>
     <div class="preloader">
@@ -194,25 +248,44 @@
             <img loading="lazy" src="/public/preloader.svg" alt="loader" srcset="">
         </div>
     </div>
+    <div class="helper__container">
+        <img class="logoH" src="/public/logo.jpeg" alt="">
+        <div class="modal js-modal">
+            <div class="modal-image">
+            </div>
+            <h1>Instructions!</h1>
+            <video id="videoPlayer" class="video-js vjs-big-play-centered" controls autoplay preload="auto" width="640"
+                height="264" poster="/public/bg3.jpg" data-setup="{}">
+                <source src="/public/helper.mp4" type="video/mp4" />
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>
+            <button onclick="myfunction();" class="js-close">Close</button>
+        </div>
+    </div>
     <div id="card__container">
         <div id="flipbook">
             <div class="cover">
-                <div class="helper__container">
-                    <span onclick="close()" class="close">x</span>
-                    <div class="helper">
-                        <span>Tap the edges!</span><br>
-                    </div>
-                </div>
             </div>
-            <div class="pages"> Page 1 </div>
+            <div class="pages"></div>
         </div>
     </div>
     <script>
         window.onload = function () {
             document.querySelector('.preloader').style.display = 'none';
         };
+
+        function myfunction() {
+            document.querySelector('.helper__container').style.display = 'none'
+        }
+
     </script>
+    <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
     <script src="js/flip.js"></script>
+
 </body>
 
 </html>
