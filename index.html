@@ -81,14 +81,7 @@
             background-position: center;
         }
 
-        @media only screen and (max-width: 600px) {
-            #flipbook .cover {
-                background-image: url('public/bg4.png');
-                background-size: 136%;
-                background-repeat: no-repeat;
-                background-position: center;
-            }
-        }
+
 
         #card__container {
             width: 100%;
@@ -114,10 +107,6 @@
             -moz-box-shadow: 1px 2px 16px 0px rgba(0, 0, 0, 0.75);
         } */
 
-        #flipbook .pages {
-            font-size: 4em;
-        }
-
         .helper__container {
             position: absolute;
             z-index: 300;
@@ -129,13 +118,13 @@
             align-items: center;
         }
 
-        .helper__container img{
+        .helper__container img {
             width: 200px;
             position: absolute;
             z-index: 2;
             top: 5%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
         }
 
         .helper {
@@ -192,6 +181,100 @@
             display: block;
         }
 
+        .container__message {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .container__message .tree {
+            position: absolute;
+            width: 120px;
+            bottom: 5%;
+            right: 5%;
+            animation: shake 1s;
+
+            /* When the animation is finished, start again */
+            animation-iteration-count: 10;
+        }
+
+        .container__message .sock {
+            position: absolute;
+            width: 120px;
+            top: -2%;
+            left: 5%;
+            transform: rotate(45deg);
+            animation: shake 1s;
+
+            /* When the animation is finished, start again */
+            animation-iteration-count: 10;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translate(1px, 1px) rotate(35deg);
+            }
+
+            10% {
+                transform: translate(-1px, -2px) rotate(34deg);
+            }
+
+            20% {
+                transform: translate(-3px, 0px) rotate(35deg);
+            }
+
+            30% {
+                transform: translate(3px, 2px) rotate(34deg);
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(35deg);
+            }
+
+            50% {
+                transform: translate(-1px, 2px) rotate(34deg);
+            }
+
+            60% {
+                transform: translate(-3px, 1px) rotate(34deg);
+            }
+
+            70% {
+                transform: translate(3px, 1px) rotate(34deg);
+            }
+
+            80% {
+                transform: translate(-1px, -1px) rotate(35deg);
+            }
+
+            90% {
+                transform: translate(1px, 2px) rotate(35deg);
+            }
+
+            100% {
+                transform: translate(1px, -2px) rotate(34deg);
+            }
+        }
+
+        .message {
+            font-family: 'Mountains of Christmas', cursive;
+            width: 80%;
+            font-size: 2.5em;
+            margin: auto;
+        }
+
+        .signature {
+            display: block;
+            margin-top: 5em;
+            font-size: 1em;
+            font-weight: light;
+        }
+
+        .christmas {
+            font-weight: bolder;
+            font-size: 2em;
+            color: purple;
+        }
+
         .active {
             display: block;
         }
@@ -236,12 +319,81 @@
             height: 50px;
         }
 
-        .logoH{
+        .logoH {
             position: absolute;
             width: 140px;
             top: 0px;
             left: 3%;
         }
+
+        #flipbook  h1{
+            display: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #flipbook .cover {
+                background-image: url('public/bg4.png');
+                background-size: 136%;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            #flipbook  h1{
+            display: block;
+        }
+
+            .message {
+                font-family: 'Mountains of Christmas', cursive;
+                width: 80%;
+                font-size: 1.2em;
+                margin: auto;
+            }
+
+            .signature {
+                display: block;
+                margin-top: 2em;
+                font-size: 0.6em;
+                font-weight: light;
+            }
+
+            .christmas {
+                font-weight: bolder;
+                font-size: 3em;
+                color: purple;
+            }
+
+            .container__message .tree {
+            position: absolute;
+            width: 90px;
+            bottom: 2%;
+            right: 3%;
+            animation: shake 1s;
+
+            /* When the animation is finished, start again */
+            animation-iteration-count: 10;
+        }
+
+        .container__message .sock {
+            position: absolute;
+            width: 90px;
+            top: -2%;
+            left: 5%;
+            transform: rotate(45deg);
+            animation: shake 1s;
+
+            /* When the animation is finished, start again */
+            animation-iteration-count: 10;
+        }
+
+            .modal{
+                width: 90%;
+            }
+
+            #videoPlayer{
+                width: 100%;
+            }
+        }
+
     </style>
     <div class="preloader">
         <div class="loader">
@@ -258,7 +410,7 @@
                 height="264" poster="public/bg3.jpg" data-setup="{}">
                 <source src="public/helper.mp4" type="video/mp4" />
                 <p class="vjs-no-js">
-                    To view this video please enable JavaScript, and consider upgrading to 
+                    To view this video please enable JavaScript, and consider upgrading to
                     web browser that
                     <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                 </p>
@@ -269,8 +421,20 @@
     <div id="card__container">
         <div id="flipbook">
             <div class="cover">
+                <h1 class="title" style="font-size: 3em;color:white;font-family: 'Mountains of Christmas', cursive;text-align: center;font-weight: bolder;">MERRY </br>CHRISTMAS!</h1>
             </div>
-            <div class="pages"></div>
+            <div class="pages">
+                <div class="container__message">
+                    <img class="tree" src="public/tree.png" alt="">
+                    <img class="sock" src="public/sock.png" alt="">
+                    <p class="message">
+                        In warm appreciation of your support during the past year, the people at Harrow Council extend
+                        our very best wishes to you and your loved ones.</br></br><span class="christmas">Merry
+                            Christmas!</span></br>
+                    </p>
+                    <span class="signature">Shaun Riley, Assistant Director of Health and Wellbeing</span>
+                </div>
+            </div>
         </div>
     </div>
     <script>
